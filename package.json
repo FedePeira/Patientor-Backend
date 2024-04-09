@@ -1,0 +1,30 @@
+{
+  "name": "patientor-backend",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000P\u0000a\u0000t\u0000i\u0000e\u0000n\u0000t\u0000o\u0000r\u0000-\u0000B\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev index.ts",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "}"
+  },
+  "author": "Federico Peirano",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "eslint": "^8.57.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
