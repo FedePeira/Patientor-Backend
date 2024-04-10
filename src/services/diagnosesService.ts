@@ -14,6 +14,11 @@ const getNonDiagnosesEntries = (): NonDiagnosesEntry[] => {
   }));
 };
 
+const findById = (code: string): DiagnosesEntry | undefined => {
+  const diagnose = diagnoses.find(d => d.code === code);
+  return diagnose;
+};
+
 const addDiagnoses = () => {
   return null;
 };
@@ -21,5 +26,6 @@ const addDiagnoses = () => {
 export default {
   getDiagnoses,
   addDiagnoses,
-  getNonDiagnosesEntries
+  getNonDiagnosesEntries,
+  findById
 };

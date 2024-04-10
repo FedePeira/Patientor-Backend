@@ -9,6 +9,16 @@ router.get('/', (_req, res) => {
   res.send(diagnoses);
 });
 
+router.get('/:code', (req, res) => {
+  const diagnose = diagnosesService.findById(String(req.params.code));
+
+  if (diagnose) {
+    res.send(diagnose);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 router.post('/', (_req, res) => {
   res.send('Saving a diagnose!');
 });

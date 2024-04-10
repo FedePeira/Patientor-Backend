@@ -24,10 +24,10 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const diary = patientService.findById(String(req.params.id));
+  const patient = patientService.findById(String(req.params.id));
 
-  if (diary) {
-    res.send(diary);
+  if (patient) {
+    res.send(patient);
   } else {
     res.sendStatus(404);
   }
