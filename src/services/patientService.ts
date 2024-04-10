@@ -1,9 +1,9 @@
 import patients from '../../data/patients';
 import { v1 as uuid } from 'uuid';
-import { PatientsEntry, NonPatientsEntry, NewPatientEntry } from '../types';
+import { PatientEntry, NonPatientsEntry, NewPatientEntry } from '../types';
 
 
-const getPatients = (): PatientsEntry[] => {
+const getPatients = (): PatientEntry[] => {
   return patients;
 };
 
@@ -18,12 +18,12 @@ const getNonPatientsEntries = (): NonPatientsEntry[] => {
   }));
 };
 
-const findById = (id: string): PatientsEntry | undefined => {
+const findById = (id: string): PatientEntry | undefined => {
   const patient = patients.find(p => p.id === id);
   return patient;
 };
 
-const addPatients = ( entry: NewPatientEntry ): PatientsEntry => {
+const addPatients = ( entry: NewPatientEntry ): PatientEntry => {
   const newPatientEntry = {
     id: uuid(),    
     ...entry,

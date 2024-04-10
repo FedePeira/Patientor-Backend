@@ -13,7 +13,7 @@ export interface BaseEntry{
   diagnosisCodes?: Array<DiagnosesEntry['code']>;
 }
 
-export interface PatientsEntry {
+export interface PatientEntry {
   id: string,
   name: string,
   dateOfBirth: string,
@@ -31,9 +31,9 @@ export enum Gender {
 
 export type NonDiagnosesEntry = Omit<DiagnosesEntry,  'latin'>;
 
-export type NonPatientsEntry = Omit<PatientsEntry, 'ssn'>;
+export type NonPatientsEntry = Omit<PatientEntry, 'ssn'>;
 
-export type NewPatientEntry = Omit<PatientsEntry, 'id' | 'entries'>;
+export type NewPatientEntry = Omit<PatientEntry, 'id' | 'entries'>;
 
 interface OccupationalHealthCareEntry extends BaseEntry{
   type: "OccupationalHealthcare";
