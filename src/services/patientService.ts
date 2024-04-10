@@ -8,12 +8,13 @@ const getPatients = (): PatientsEntry[] => {
 };
 
 const getNonPatientsEntries = (): NonPatientsEntry[] => {
-  return patients.map(({ id, name, dateOfBirth, gender, occupation  }) =>({
+  return patients.map(({ id, name, dateOfBirth, gender, occupation, entries  }) =>({
     id, 
     name, 
     dateOfBirth,
     gender,
-    occupation
+    occupation,
+    entries,
   }));
 };
 
@@ -25,7 +26,8 @@ const findById = (id: string): PatientsEntry | undefined => {
 const addPatients = ( entry: NewPatientEntry ): PatientsEntry => {
   const newPatientEntry = {
     id: uuid(),    
-    ...entry
+    ...entry,
+    entries: []
   };
 
   patients.push(newPatientEntry);

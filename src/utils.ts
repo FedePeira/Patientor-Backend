@@ -27,13 +27,13 @@ const toNewPatientEntry = (object: unknown): NewPatientEntry => {
     throw new Error('Incorrect or missing date');
   }
 
-  if('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object){
+  if('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object && 'entries' in object){
     const newEntry: NewPatientEntry = {
       name: parseString(object.name),
       dateOfBirth: parseString(object.dateOfBirth),
       ssn: parseString(object.ssn),
       gender: parseGender(object.gender),
-      occupation: parseString(object.occupation) 
+      occupation: parseString(object.occupation),
     };
   
     return newEntry;
