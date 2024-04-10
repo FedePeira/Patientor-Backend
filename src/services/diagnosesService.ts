@@ -8,7 +8,10 @@ const getDiagnoses = (): DiagnosesEntry[] => {
 };
 
 const getNonDiagnosesEntries = (): NonDiagnosesEntry[] => {
-  return diagnoses;
+  return diagnoses.map(({ code, name  }) =>({
+    code, 
+    name, 
+  }));
 };
 
 const addDiagnoses = () => {
