@@ -73,6 +73,14 @@ const patients: PatientEntry[] = [
         employerName: 'FBI',
         description: 'Prescriptions renewed.',
       },
+      {
+        id: 'fcd59fa6-c4b4-4fec-ac4d-df4fe13f85f62',
+        date: '2019-09-10',
+        specialist: 'MD House',
+        type: 'OccupationalHealthcare',
+        employerName: 'FBI',
+        description: 'Prescriptions renewed.',
+      },
     ],
   },
   {
