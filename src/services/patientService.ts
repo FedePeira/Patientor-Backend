@@ -1,13 +1,13 @@
 import patients from '../../data/patients';
 import { v1 as uuid } from 'uuid';
-import { PatientEntry, NonPatientsEntry, NewPatientEntry } from '../types';
+import { Patient, NonPatient, NewPatient, NewOccupationalHealthCareEntry, NewHospitalEntry } from '../types';
 
 
-const getPatients = (): PatientEntry[] => {
+const getPatients = (): Patient[] => {
   return patients;
 };
 
-const getNonPatientsEntries = (): NonPatientsEntry[] => {
+const getNonPatientsEntries = (): NonPatient[] => {
   return patients.map(({ id, name, dateOfBirth, gender, occupation, entries  }) =>({
     id, 
     name, 
@@ -18,25 +18,45 @@ const getNonPatientsEntries = (): NonPatientsEntry[] => {
   }));
 };
 
-const findById = (id: string): PatientEntry | undefined => {
+const findById = (id: string): Patient | undefined => {
   const patient = patients.find(p => p.id === id);
   return patient;
 };
 
-const addPatients = ( entry: NewPatientEntry ): PatientEntry => {
-  const newPatientEntry = {
+const addPatients = ( patient: NewPatient ): Patient => {
+  const newPatient = {
     id: uuid(),    
-    ...entry,
+    ...patient,
     entries: []
   };
 
-  patients.push(newPatientEntry);
-  return newPatientEntry;
+  patients.push(newPatient);
+  return newPatient;
+};
+
+const addEntryToPatient = (patientId: string, newEntry: NewOccupationalHealthCareEntry | NewHospitalEntry): Patient => {
+  const patient = findById(patientId) as Patient;
+
+  if(!patient){
+    throw new Error('Patient not found');
+  }
+
+  if (typeof patient === 'undefined') {
+    throw new Error('Patient not found');
+  }
+  const newPatientEntry = {
+    id: uuid(),    
+    ...newEntry,
+  };
+
+  patient.entries.push(newPatientEntry);
+  return patient;
 };
 
 export default {
   getPatients,
   addPatients,
   getNonPatientsEntries,
-  findById
+  findById,
+  addEntryToPatient
 };

@@ -1,20 +1,20 @@
 import diagnoses from '../../data/diagnoses';
 
-import { DiagnosesEntry, NonDiagnosesEntry } from '../types';
+import { Diagnoses, NonDiagnoses } from '../types';
 
 
-const getDiagnoses = (): DiagnosesEntry[] => {
+const getDiagnoses = (): Diagnoses[] => {
   return diagnoses;
 };
 
-const getNonDiagnosesEntries = (): NonDiagnosesEntry[] => {
+const getNonDiagnosesEntries = (): NonDiagnoses[] => {
   return diagnoses.map(({ code, name  }) =>({
     code, 
     name, 
   }));
 };
 
-const findById = (code: string): DiagnosesEntry | undefined => {
+const findById = (code: string): Diagnoses | undefined => {
   const diagnose = diagnoses.find(d => d.code === code);
   return diagnose;
 };

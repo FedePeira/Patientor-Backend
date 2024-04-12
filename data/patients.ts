@@ -1,6 +1,6 @@
-import { PatientEntry, Gender } from '../src/types';
+import { Patient, Gender } from '../src/types';
 
-const patients: PatientEntry[] = [
+const patients: Patient[] = [
   {
     id: 'd2773336-f723-11e9-8f0b-362b9e155667',
     name: 'John McClane',
@@ -14,7 +14,7 @@ const patients: PatientEntry[] = [
         date: '2015-01-02',
         type: 'Hospital',
         specialist: 'MD House',
-        diagnosisCodes: ['S62.5'],
+        diagnosisCode: ['S62.5'],
         description:
           "Healing time appr. 2 weeks. patient doesn't remember how he got the injury.",
         discharge: {
@@ -38,7 +38,7 @@ const patients: PatientEntry[] = [
         type: 'OccupationalHealthcare',
         specialist: 'MD House',
         employerName: 'HyPD',
-        diagnosisCodes: ['Z57.1', 'Z74.3', 'M51.2'],
+        diagnosisCode: ['Z57.1', 'Z74.3', 'M51.2'],
         description:
           'Patient mistakenly found himself in a nuclear plant waste site without protection gear. Very minor radiation poisoning. ',
         sickLeave: {
