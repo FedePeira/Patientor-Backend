@@ -1,7 +1,11 @@
 import { NewPatient, Gender, TypeEntry, NewHospitalEntry, NewOccupationalHealthCareEntry, Discharge, SickLeave } from "./types";
 
+const isNotEmptyString = (text: unknown): text is string => {
+ return typeof text === 'string' && text.trim() !== '';
+};
+
 const parseString = (variable: unknown): string => {
-  if(!variable || !isString(variable)){
+  if(typeof variable === 'undefined' || !isString(variable)){
     throw new Error('Incorrect or missing variable');
   }
   return variable;
@@ -100,37 +104,74 @@ export const toNewPatient = (object: unknown): NewPatient => {
 
 export const toNewPatientEntry = (object: unknown): NewHospitalEntry | NewOccupationalHealthCareEntry => {   
   if(!object || typeof object !== 'object') {
+    console.log('------------------------');
+    console.log('Revisando tenga algo object: ', object);
+    console.log('------------------------');
     throw new Error('Incorrect or missing date');
   }
 
+  console.log('Object: ', object);
+
   if('type' in object && parseType(object.type) && object.type === 'Hospital') {
-    if('description' in object && 'date' in object && 'specialist' in object && 'diagnosisCodes' in object && 'discharge' in object){
-      const newHospitalEntry: NewHospitalEntry = {
-        description: parseString(object.description),
-        date: parseString(object.date),
-        specialist: parseString(object.specialist),
-        diagnosisCode: parseArray(object.diagnosisCodes),
-        discharge: parseDischarge(object.discharge),
-        type: "Hospital"
-      };
+    console.log('------------------------');
+    console.log('Revisando entry con type Hospital');
+    console.log('------------------------');
+
+    if('description' in object && isNotEmptyString(object.description) &&
+      'date' in object && isNotEmptyString(object.date) &&
+      'specialist' in object && isNotEmptyString(object.specialist) &&
+      'diagnosisCodes' in object && Array.isArray(object.diagnosisCodes) && object.diagnosisCodes.every(isNotEmptyString) &&
+      'discharge' in object){
+        const newHospitalEntry: NewHospitalEntry = {
+          description: parseString(object.description),
+          date: parseString(object.date),
+          specialist: parseString(object.specialist),
+          diagnosisCode: parseArray(object.diagnosisCodes),
+          discharge: parseDischarge(object.discharge),
+          type: "Hospital"
+        };
+
+        console.log('------------------------');
+        console.log('Devolviendo entry: ', newHospitalEntry);
+        console.log('------------------------');
     
-      return newHospitalEntry;
+        return newHospitalEntry;
     }
+
+    console.log('No se logor devolver el entry');
+    throw new Error('Incorrect data: some fields are missing');
   } else if('type' in object && parseType(object.type) && object.type === 'OccupationalHealthcare') {
-    if('description' in object && 'date' in object && 'specialist' in object && 'diagnosisCodes' in object &&  'employerName' in object && 'sickLeave' in object){
-      const newEntry: NewOccupationalHealthCareEntry = {
-        description: parseString(object.description),
-        date: parseString(object.date),
-        specialist: parseString(object.specialist),
-        diagnosisCode: parseArray(object.diagnosisCodes),
-        employerName: parseString(object.employerName),
-        sickLeave: parseSickLeave(object.sickLeave),
-        type: "OccupationalHealthcare"
-      };
     
-      return newEntry;
+    console.log('------------------------');
+    console.log('Revisando entry con type OccupationalHealthcare');
+    console.log('------------------------');
+    if('description' in object && isNotEmptyString(object.description) &&
+      'date' in object && isNotEmptyString(object.date) &&
+      'specialist' in object && isNotEmptyString(object.specialist) &&
+      'diagnosisCodes' in object && Array.isArray(object.diagnosisCodes) && object.diagnosisCodes.every(isNotEmptyString) &&
+      'employerName' in object && isNotEmptyString(object.employerName) &&
+      'sickLeave' in object){
+        const newOccupationalEntry: NewOccupationalHealthCareEntry = {
+          description: parseString(object.description),
+          date: parseString(object.date),
+          specialist: parseString(object.specialist),
+          diagnosisCode: parseArray(object.diagnosisCodes),
+          employerName: parseString(object.employerName),
+          sickLeave: parseSickLeave(object.sickLeave),
+          type: "OccupationalHealthcare"
+        };
+
+        console.log('------------------------');
+        console.log('Devolviendo entry: ', newOccupationalEntry);
+        console.log('------------------------');
+    
+        return newOccupationalEntry;
     }  
+
+    console.log('No se logor devolver el entry');
+    throw new Error('Incorrect data: some fields are missing');
   }
-  
+
+  console.log('No se logor devolver el entry');
   throw new Error('Incorrect data: some fields are missing');
 };

@@ -9,7 +9,7 @@ interface BaseEntry{
   description: string;
   date: string;
   specialist: string;
-  diagnosisCode?: string[];
+  diagnosisCode?:  Array<Diagnoses['code']>;
 }
 
 export interface Patient {
@@ -49,8 +49,8 @@ export type NewHospitalEntry = Omit<HospitalEntry, 'id'>;
 
 interface OccupationalHealthCareEntry extends BaseEntry{
   type: "OccupationalHealthcare";
-  employerName: string,
-  sickLeave: SickLeave
+  employerName?: string,
+  sickLeave?: SickLeave
 }
 
 export interface SickLeave {

@@ -25,6 +25,7 @@ router.post('/', (req, res) => {
 
 router.post('/:id/entries', (req, res) => {
   try {
+    console.log('Agregando un entry al patient:' + String(req.params.id));
     const newEntry = toNewPatientEntry(req.body);
     const updatedPatient = patientService.addEntryToPatient(String(req.params.id), newEntry);
     res.json(updatedPatient);
